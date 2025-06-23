@@ -18,7 +18,7 @@ DEFAULT_PORT = 8080
 class IPCamera(CameraInterface):
     def __init__(self, settings=None):
         self.settings = settings or get_settings()
-        self.base_url = f"http://{self.settings.camera.phone_ip}:{self.settings.camera.port}"
+        self.base_url = f"{self.settings.camera.phone_ip}"
         self.video_cap = None
         self.is_connected = False
         self.lock = threading.Lock()
@@ -28,7 +28,7 @@ class IPCamera(CameraInterface):
 
     def connect(self, max_retries=3):
         if not self.is_connected:
-            video_url = f"{self.base_url}/video"
+            video_url = f"{self.base_url}"
 
             retry_count = 0
             while retry_count < max_retries:
